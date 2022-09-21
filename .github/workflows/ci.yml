@@ -34,11 +34,6 @@ jobs:
       - run: go build ./cmd/semantic-release/
         env:
           CGO_ENABLED: 0
-      - uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.TOKEN }}
       - run: go test -v ./...
       - run: ./semantic-release --dry --allow-no-changes --no-ci
         env:
@@ -55,11 +50,6 @@ jobs:
         with:
           go-version: 1.18
       - run: go build ./cmd/semantic-release/
-      - uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.TOKEN }}
       - uses: go-semantic-release/action@v1
         with:
           bin: ./semantic-release
