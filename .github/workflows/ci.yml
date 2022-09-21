@@ -37,7 +37,7 @@ jobs:
       - run: go test -v ./...
       - run: ./semantic-release --dry --allow-no-changes --no-ci
         env:
-          GITHUB_TOKEN: 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
+          TOKEN: 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
         shell: bash
 
   release:
@@ -61,5 +61,5 @@ jobs:
           hooks: goreleaser,npm-binary-releaser
           prerelease: true
         env:
-          GITHUB_TOKEN: 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
+          TOKEN: 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
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
