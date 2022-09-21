@@ -37,7 +37,7 @@ jobs:
       - run: go test -v ./...
       - run: ./semantic-release --dry --allow-no-changes --no-ci
         env:
-          TOKEN: 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
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         shell: bash
 
   release:
@@ -54,12 +54,12 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: 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
+          password: ${{ secrets.TOKEN }}
       - uses: go-semantic-release/action@v1
         with:
           bin: ./semantic-release
           hooks: goreleaser,npm-binary-releaser
           prerelease: true
         env:
-          TOKEN: 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
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
